@@ -1,13 +1,24 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-<!DOCTYPE html>
 <html>
 <head>
-    <title>JSP - Hello World</title>
+    <title>Login</title>
 </head>
+
 <body>
-<h1><%= "Hello World!" %>
-</h1>
-<br/>
-<a href="hello-servlet">Hello Servlet</a>
+<div >
+    <form id="loginForm" name="login" onsubmit="validarTodo()" method="post" action="Login" >
+        <label><b>Nombre de Usuario</b></label>
+        <label>
+            <input type="text" placeholder="Ingresar Usuario" name="nombreUser" required>
+        </label>
+
+        <label><b>Contraseña</b></label>
+        <label>
+            <input type="password" placeholder="Ingresar Contraseña" name="contrasenna" required>
+        </label>
+        <button type="submit">Entrar</button>
+    </form>
+</div>
+
 </body>
 </html>

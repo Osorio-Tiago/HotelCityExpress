@@ -20,17 +20,17 @@ public class Login extends HttpServlet{
         String nombre;
         String contrasenna;
 
-//         El getParameter va a buscar en el formulario por "name"
-// <input type="text" class="form-control" name="nombre" placeholder="Tu nombre" required>
-
         nombre = request.getParameter("nombreUser");
         contrasenna = request.getParameter("contrasenna");
 
         if (Objects.equals(nombre, "Admin") && Objects.equals(contrasenna, "123")) {
-            request.getRequestDispatcher("mostrarSolicitud.jsp").forward(request, response);
+
+            HttpSession session=request.getSession();
+            session.setAttribute("name",nombre);
+            request.getRequestDispatcher("reservaForm.jsp").forward(request, response);
+            session.invalidate();
         } else {
-            RequestDispatcher rd = getServletContext().getRequestDispatcher(
-                    "/login.jsp");
+            RequestDispatcher rd = getServletContext().getRequestDispatcher("index.jsp");
             rd.include(request, response);
         }
 
