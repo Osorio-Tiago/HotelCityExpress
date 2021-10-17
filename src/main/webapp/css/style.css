@@ -1,0 +1,19 @@
+body {
+    font-size: 1.8rem;
+    background-image: url("../FONDO.jpg");
+    letter-spacing: .05rem;
+}
+
+
+.contenedor {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    height: 100%;
+}
+
+.elemento {
+    border: aqua;
+    height: 100px;
+    width: 100%;
+}

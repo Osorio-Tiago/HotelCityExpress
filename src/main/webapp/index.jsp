@@ -2,21 +2,23 @@
 <html>
 <head>
     <title>Login</title>
+    <link rel="stylesheet" href="css/style.css">
 </head>
 
 <body>
-<div >
-    <form id="loginForm" name="login" onsubmit="validarTodo()" method="post" action="Login" >
-        <label><b>Nombre de Usuario</b></label>
-        <label>
-            <input type="text" placeholder="Ingresar Usuario" name="nombreUser" required>
-        </label>
-
-        <label><b>Contraseña</b></label>
-        <label>
-            <input type="password" placeholder="Ingresar Contraseña" name="contrasenna" required>
-        </label>
-        <button type="submit">Entrar</button>
+<div class = "contenedor">
+    <form id="loginForm" name="login" method="post" action="Login" >
+        <div class="elemento">
+            <label><b>Nombre de Usuario</b></label><br>
+            <label>
+                <input type="text" placeholder="Ingresar Usuario" name="nombreUser" required>
+            </label><br>
+            <label><b>Contraseña</b></label><br>
+            <label>
+                <input type="password" placeholder="Ingresar Contraseña" name="contrasenna" required>
+            </label><br>
+            <button type="submit">Entrar</button>
+        </div>
     </form>
 </div>
 

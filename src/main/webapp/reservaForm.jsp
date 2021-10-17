@@ -2,9 +2,20 @@
 <html lang="en">
 <head>
     <title>Reserva</title>
+
+    <!-- GOOGLE FONT-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="css/reservaStyle.css">
 </head>
 
 <body>
+<section>
+
+
+</section>
 <section >
     <div >
         <div >
@@ -16,7 +27,7 @@
 
                         <!-- Nombre -->
                         <div >
-                            <label >Nombre <span class="text-danger">*</span></label>
+                            <label >Nombre</label>
                             <label>
                                 <input type="text" name="nombre" placeholder="Ej: Santiago" required>
                             </label>
@@ -25,7 +36,7 @@
 
                     <!-- Correo -->
                     <div >
-                        <label>Correo electrónico <span class="text-danger">*</span></label>
+                        <label>Correo electrónico</label>
                         <label for="correo">
                             <input type = "email" id="correo" name="correo" placeholder="Ej: example@example.com" required >
                         </label>
@@ -34,7 +45,7 @@
                     <!-- Teléfono -->
 
                     <div>
-                        <label>Teléfono <span class="text-danger">*</span></label>
+                        <label>Teléfono</label>
                         <label>
                             <input type="number" class="form-control" placeholder="123 4567 8910"  maxlength="11"   name="telefono"  oninput="if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);">
                         </label>
@@ -43,14 +54,14 @@
                     <!-- Fechas -->
 
                     <div>
-                        <label><span>Ingresa tu fecha de ingreso</span></label>
+                        <label>Ingresa tu fecha de ingreso</label>
                         <label>
                             <input type="date" id = "fecha1" name="fecha1">
                         </label>
                     </div>
 
                     <div>
-                        <label><span>Ingresa tu fecha de salida</span></label>
+                        <label>Ingresa tu fecha de salida</label>
                         <label>
                             <input type="date" id = "fecha2" name="fecha2" min = "fecha1">
                         </label>
@@ -59,7 +70,7 @@
                     <!-- Cantidad de adultos -->
 
                     <div >
-                        <label >Cantidad de adultos<span class="text-danger">*</span></label>
+                        <label >Cantidad de adultos</label>
                        <label>
                            <input type="number" placeholder="Ej: 1,2,3..." id="cantAdultos" name="cantidad">
                        </label>
@@ -79,7 +90,7 @@
                     <fieldset>
                         <div>
                             <label>
-                                <span>Seleccione los complementos que desea recibir en su estadía:</span></label>
+                                Seleccione los complementos que desea recibir en su estadía:</label>
                             <label for="radioDesayuno">
                                 <input type="checkbox" id="radioDesayuno" name=radioDesayuno> Desayuno incluído
                             </label>
