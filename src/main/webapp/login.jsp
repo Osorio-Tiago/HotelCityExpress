@@ -1,0 +1,24 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+</head>
+
+<body>
+<div >
+    <form id="loginForm" name="login" onsubmit="validarTodo()" method="post" action="Login" >
+    <label><b>Nombre de Usuario</b></label>
+    <label>
+        <input type="text" placeholder="Ingresar Usuario" name="nombreUser" required>
+    </label>
+
+    <label><b>Contraseña</b></label>
+    <label>
+        <input type="password" placeholder="Ingresar Contraseña" name="contrasenna" required>
+    </label>
+    <button type="submit">Entrar</button>
+    </form>
+</div>
+
+</body>
+</html>
