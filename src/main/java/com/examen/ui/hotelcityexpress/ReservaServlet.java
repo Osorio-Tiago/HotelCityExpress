@@ -23,7 +23,7 @@ public class ReservaServlet extends HttpServlet {
 
         String nombre;
         String correo;
-        double telefono;
+        String telefono;
         int numeroDias;
         String fechaIngreso;
         String fechaSalida;
@@ -36,7 +36,7 @@ public class ReservaServlet extends HttpServlet {
 
         nombre = request.getParameter("nombre");
         correo = request.getParameter("correo");
-        telefono = Double.parseDouble(request.getParameter("telefono"));
+        telefono =request.getParameter("telefono");
         fechaIngreso = request.getParameter("fechaIngreso");
         fechaSalida = request.getParameter("fechaSalida");
         cantidadAdultos = Integer.parseInt(request.getParameter("cantidadAdultos"));
@@ -49,8 +49,12 @@ public class ReservaServlet extends HttpServlet {
         Reserva reserva = new Reserva(nombre, correo, telefono, fechaIngreso, fechaSalida, cantidadAdultos, cantidadNinnos,
             desayuno, wifi, parqueo);
 
-        reserva.setPrecioFinal();
+
+        //Calculos antes de pasar a la tabla
         reserva.setCantidadDiasNoches();
+        reserva.setPrecioFinal();
+        reserva.setNumeroReserva();
+
 
         request.setAttribute("Reserva", reserva);
         request.getRequestDispatcher("mostrarReserva.jsp").forward(request, response);

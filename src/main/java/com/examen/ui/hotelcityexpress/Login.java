@@ -12,12 +12,12 @@ public class Login extends HttpServlet{
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
+        HttpSession session=request.getSession();
         PrintWriter out=response.getWriter();
 
         String nombre;
@@ -25,11 +25,12 @@ public class Login extends HttpServlet{
         nombre = request.getParameter("nombreUser");
         contrasenna = request.getParameter("contrasenna");
 
-        if (Objects.equals(nombre, "Admin") && Objects.equals(contrasenna, "123")) {
+        if (Objects.equals(nombre, "Admin") && Objects.equals(contrasenna, "123") &&
+                session.getAttribute("usuario") == null) {
 
 
-            HttpSession session=request.getSession();
-            session.setAttribute("name",nombre);
+
+            session.setAttribute("usuario",nombre);
             request.getRequestDispatcher("reservaForm.jsp").forward(request, response);
         } else {
             out.print("Error, nombre de usuario o contraseña incorrectos!");

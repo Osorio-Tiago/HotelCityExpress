@@ -13,7 +13,7 @@ public class Reserva implements Serializable {
 
     String nombre;
     String correo;
-    double telefono;
+    String telefono;
     String fechaIngreso;
     String fechaSalida;
     int cantidadDias;
@@ -23,11 +23,14 @@ public class Reserva implements Serializable {
     Boolean desayuno;
     Boolean wifi;
     Boolean parqueo;
-    double precioFinal = 0;
+    double precioFinal;
+    String numeroReserva;
 
 
+    public Reserva() {
+    }
 
-    public Reserva(String nombre, String correo, double telefono, String fechaIngreso, String fechaSalida,int cantidadAdultos, int cantidadNinnos, Boolean desayuno, Boolean wifi,
+    public Reserva(String nombre, String correo, String telefono, String fechaIngreso, String fechaSalida, int cantidadAdultos, int cantidadNinnos, Boolean desayuno, Boolean wifi,
                    Boolean parqueo){
         this.nombre = nombre;
         this.correo = correo;
@@ -40,6 +43,7 @@ public class Reserva implements Serializable {
         this.wifi = wifi;
         this.parqueo = parqueo;
         this.precioFinal = 0;
+        this.numeroReserva = "";
     }
 
     public String getFechaIngreso() {
@@ -59,7 +63,11 @@ public class Reserva implements Serializable {
     }
 
     public int getCantidadDias() {
-        return cantidadDias;
+        return this.cantidadDias;
+    }
+
+    public int getCantidadNoches(){
+        return this.cantidadNoches;
     }
 
     public void setCantidadDias(int cantidadDias) {
@@ -70,10 +78,6 @@ public class Reserva implements Serializable {
         return precioFinal;
     }
 
-    public void setPrecioFinal(double precioFinal) {
-        this.precioFinal = precioFinal;
-    }
-
     public String getNombre() {
         return nombre;
     }
@@ -82,7 +86,7 @@ public class Reserva implements Serializable {
         return correo;
     }
 
-    public double getTelefono() {
+    public String getTelefono() {
         return telefono;
     }
 
@@ -114,7 +118,7 @@ public class Reserva implements Serializable {
         this.correo = correo;
     }
 
-    public void setTelefono(int telefono) {
+    public void setTelefono(String telefono) {
         this.telefono = telefono;
     }
 
@@ -174,7 +178,37 @@ public class Reserva implements Serializable {
         LocalDate dateEnd = LocalDate.parse(fechaSalida, formatter);
 
         this.cantidadDias = dateEnd.compareTo(dateStart);
-        this.cantidadNoches = cantidadDias-1;
+        if(cantidadDias ==0){
+            this.cantidadNoches = 0;
+        }else {
+            this.cantidadNoches = cantidadDias - 1;
+        }
     }
 
+    public void setNumeroReserva(){
+        int i = 6;
+        String theAlphaNumericS;
+        StringBuilder builder;
+
+        theAlphaNumericS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ" + "0123456789";
+
+        //create the StringBuffer
+        builder = new StringBuilder(i);
+
+        for (int m = 0; m < i; m++) {
+
+            // generate numeric
+            int myindex
+                    = (int)(theAlphaNumericS.length()
+                    * Math.random());
+            // add the characters
+            builder.append(theAlphaNumericS
+                    .charAt(myindex));
+        }
+        this.numeroReserva = builder.toString();
+    }
+
+    public String getNumeroReserva() {
+        return this.numeroReserva;
+    }
 }
