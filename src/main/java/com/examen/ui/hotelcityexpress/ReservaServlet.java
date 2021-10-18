@@ -6,6 +6,7 @@ import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.text.ParseException;
 import java.util.Date;
 import java.util.Objects;
 
@@ -22,8 +23,10 @@ public class ReservaServlet extends HttpServlet {
 
         String nombre;
         String correo;
-        int telefono;
+        double telefono;
         int numeroDias;
+        String fechaIngreso;
+        String fechaSalida;
         int cantidadAdultos;
         int cantidadNinnos;
         boolean desayuno;
@@ -33,8 +36,9 @@ public class ReservaServlet extends HttpServlet {
 
         nombre = request.getParameter("nombre");
         correo = request.getParameter("correo");
-        telefono = Integer.parseInt(request.getParameter("telefono"));
-        //numeroDias = Integer.parseInt(request.getParameter("numeroDias"));
+        telefono = Double.parseDouble(request.getParameter("telefono"));
+        fechaIngreso = request.getParameter("fechaIngreso");
+        fechaSalida = request.getParameter("fechaSalida");
         cantidadAdultos = Integer.parseInt(request.getParameter("cantidadAdultos"));
         cantidadNinnos = Integer.parseInt(request.getParameter("cantidadNinnos"));
         desayuno = Boolean.parseBoolean(request.getParameter("desayuno"));
@@ -42,10 +46,13 @@ public class ReservaServlet extends HttpServlet {
         parqueo = Boolean.parseBoolean(request.getParameter("parqueo"));
 
 
-        Reserva obj1 = new Reserva(nombre, correo, telefono, 3,
-                cantidadAdultos, cantidadNinnos, desayuno, wifi, parqueo);
+        Reserva reserva = new Reserva(nombre, correo, telefono, fechaIngreso, fechaSalida, cantidadAdultos, cantidadNinnos,
+            desayuno, wifi, parqueo);
 
-        obj1.setPrecioFinal();
+        reserva.setPrecioFinal();
+        reserva.setCantidadDiasNoches();
+
+        request.setAttribute("Reserva", reserva);
+        request.getRequestDispatcher("mostrarReserva.jsp").forward(request, response);
     }
-
 }

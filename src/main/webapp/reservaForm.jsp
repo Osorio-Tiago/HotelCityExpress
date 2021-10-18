@@ -58,14 +58,14 @@
             <div >
                 <h1 >Formulario de reserva de habitación</h1>
                 <p>Ingresa la siguiente información para realizar la reserva.</p>
-                <form id="formulario" name="formulario" onsubmit="validarTodo()" method="post" action="Reserva" >
+                <form id="formulario" name="formulario" onsubmit="return validarFormulario()" method="post" action="Reserva" >
                     <div >
 
                         <!-- Nombre -->
                         <div >
-                            <label >Nombre</label>
+                            <label for="nombre">Nombre</label>
                             <label>
-                                <input type="text" name="nombre" placeholder="Ej: Santiago" required>
+                                <input type="text" id = "nombre" name="nombre" placeholder="Ej: Santiago" required>
                             </label>
                         </div>
                     </div>
@@ -88,8 +88,8 @@
                     </div>
                         -->
                     <div>
-                        <label>Teléfono <span class="text-danger">*</span></label>
-                        <input type="number" class="form-control" placeholder="Ingresa tu teléfono"  maxlength="8"   name="telefono"  oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);">
+                        <label for = "telefono">Teléfono</label>
+                        <input type="number" class="form-control" placeholder="(xxx) xxxx-xxxx"  maxlength="11"   name="telefono" id = "telefono"  oninput="if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);">
                     </div>
 
                     <!-- Fechas -->
@@ -97,19 +97,16 @@
                     <div>
                         <label>Ingresa tu fecha de ingreso</label>
                         <label>
-                            <input type="date" id = "fecha1" name="fecha1">
+                            <input type="date" id = "fechaIngreso" name="fechaIngreso">
                         </label>
                     </div>
 
                     <div>
                         <label>Ingresa tu fecha de salida</label>
                         <label>
-                            <input type="date" id = "fecha2" name="fecha2" min = "fecha1">
+                            <input type="date" id = "fechaSalida" name="fechaSalida" min = "fechaIngreso">
                         </label>
                     </div>
-
-                    <input type="button" value="Calcular dias" onclick="calcularDias();" name = "cantidadDias">
-                    <div id="resultado"> </div>
 
                     <!-- Cantidad de adultos -->
 
@@ -155,4 +152,8 @@
     </div>
 </section>
 </body>
+
+<script src="js/javascrypt.js"></script>
+
+
 </html>

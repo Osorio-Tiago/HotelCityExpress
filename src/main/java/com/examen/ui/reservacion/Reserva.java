@@ -1,6 +1,11 @@
 package com.examen.ui.reservacion;
 
 import java.io.Serializable;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.Locale;
 import java.util.Objects;
 import java.util.Date;
 
@@ -8,8 +13,11 @@ public class Reserva implements Serializable {
 
     String nombre;
     String correo;
-    int telefono;
+    double telefono;
+    String fechaIngreso;
+    String fechaSalida;
     int cantidadDias;
+    int cantidadNoches;
     int cantidadAdultos;
     int cantidadNinnos;
     Boolean desayuno;
@@ -19,21 +27,51 @@ public class Reserva implements Serializable {
 
 
 
-    public Reserva(){
-
-    }
-
-    public Reserva(String nombre, String correo, int telefono, int cantidadDias, int cantidadAdultos, int cantidadNinnos, Boolean desayuno, Boolean wifi, Boolean parqueo) {
+    public Reserva(String nombre, String correo, double telefono, String fechaIngreso, String fechaSalida,int cantidadAdultos, int cantidadNinnos, Boolean desayuno, Boolean wifi,
+                   Boolean parqueo){
         this.nombre = nombre;
         this.correo = correo;
         this.telefono = telefono;
-        this.cantidadDias = cantidadDias;
+        this.fechaIngreso = fechaIngreso;
+        this.fechaSalida = fechaSalida;
         this.cantidadAdultos = cantidadAdultos;
         this.cantidadNinnos = cantidadNinnos;
         this.desayuno = desayuno;
         this.wifi = wifi;
         this.parqueo = parqueo;
         this.precioFinal = 0;
+    }
+
+    public String getFechaIngreso() {
+        return fechaIngreso;
+    }
+
+    public void setFechaIngreso(String fechaIngreso) {
+        this.fechaIngreso = fechaIngreso;
+    }
+
+    public String getFechaSalida() {
+        return fechaSalida;
+    }
+
+    public void setFechaSalida(String fechaSalida) {
+        this.fechaSalida = fechaSalida;
+    }
+
+    public int getCantidadDias() {
+        return cantidadDias;
+    }
+
+    public void setCantidadDias(int cantidadDias) {
+        this.cantidadDias = cantidadDias;
+    }
+
+    public double getPrecioFinal() {
+        return precioFinal;
+    }
+
+    public void setPrecioFinal(double precioFinal) {
+        this.precioFinal = precioFinal;
     }
 
     public String getNombre() {
@@ -44,7 +82,7 @@ public class Reserva implements Serializable {
         return correo;
     }
 
-    public int getTelefono() {
+    public double getTelefono() {
         return telefono;
     }
 
@@ -125,4 +163,18 @@ public class Reserva implements Serializable {
             this.precioFinal = precioFinal;
         }
     }
+
+
+    public void setCantidadDiasNoches(){
+
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd", Locale.ENGLISH);
+
+        LocalDate dateStart = LocalDate.parse(fechaIngreso, formatter);
+
+        LocalDate dateEnd = LocalDate.parse(fechaSalida, formatter);
+
+        this.cantidadDias = dateEnd.compareTo(dateStart);
+        this.cantidadNoches = cantidadDias-1;
+    }
+
 }
