@@ -20,16 +20,14 @@ public class Login extends HttpServlet{
 
         PrintWriter out=response.getWriter();
 
-
         String nombre;
         String contrasenna;
-
         nombre = request.getParameter("nombreUser");
         contrasenna = request.getParameter("contrasenna");
 
-
         if (Objects.equals(nombre, "Admin") && Objects.equals(contrasenna, "123")) {
-            out.print("Bienvenido, "+nombre);
+
+
             HttpSession session=request.getSession();
             session.setAttribute("name",nombre);
             request.getRequestDispatcher("reservaForm.jsp").forward(request, response);

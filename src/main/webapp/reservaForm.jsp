@@ -9,6 +9,42 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap" rel="stylesheet">
 
     <link rel="stylesheet" href="css/reservaStyle.css">
+
+
+    <script>
+
+        function calcularDias()
+        {
+            var fechaInicial=document.getElementById("fecha1").value;
+            var fechaFinal=document.getElementById("fecha2").value;
+            var resultado="";
+            var inicial;
+            var final;
+
+
+                inicial = fechaInicial.split("-");
+                final = fechaFinal.split("-");
+                // obtenemos las fechas en milisegundos
+                var dateStart = new Date(inicial[0], (inicial[1] - 1), inicial[2]);
+                var dateEnd = new Date(final[0], (final[1] - 1), final[2]);
+
+                if (dateStart < dateEnd) {
+                    // la diferencia entre las dos fechas, la dividimos entre 86400 segundos
+                    // que tiene un dia, y posteriormente entre 1000 ya que estamos
+                    // trabajando con milisegundos.
+                    var diasDif = dateEnd.getTime() - dateStart.getTime();
+                    resultado = "Dias trancurridos: " + (diasDif / 86400000) + " ";
+
+                } else {
+                    alert("La fecha inicial es posterior a la fecha final");
+
+                }
+
+            document.getElementById("resultado").innerHTML=resultado;
+
+        }
+    </script>
+
 </head>
 
 <body>
@@ -43,12 +79,17 @@
                     </div>
 
                     <!-- Teléfono -->
-
+                    <!--
                     <div>
                         <label>Teléfono</label>
                         <label>
-                            <input type="number" class="form-control" placeholder="123 4567 8910"  maxlength="11"   name="telefono"  oninput="if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);">
+                            <input type="number" placeholder="123 4567 8910"  maxlength="11" name="telefono" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);">
                         </label>
+                    </div>
+                        -->
+                    <div>
+                        <label>Teléfono <span class="text-danger">*</span></label>
+                        <input type="number" class="form-control" placeholder="Ingresa tu teléfono"  maxlength="8"   name="telefono"  oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);">
                     </div>
 
                     <!-- Fechas -->
@@ -67,22 +108,21 @@
                         </label>
                     </div>
 
+                    <input type="button" value="Calcular dias" onclick="calcularDias();" name = "cantidadDias">
+                    <div id="resultado"> </div>
+
                     <!-- Cantidad de adultos -->
 
                     <div >
                         <label >Cantidad de adultos</label>
-                       <label>
-                           <input type="number" placeholder="Ej: 1,2,3..." id="cantAdultos" name="cantidad">
-                       </label>
+                           <input type="number" placeholder="Ej: 1,2,3..." id="cantidadAdultos" name="cantidadAdultos">
                     </div>
 
                     <!-- Cantidad de niños -->
 
                     <div >
                         <label >Cantidad de niños</label>
-                        <label>
-                            <input type="number" placeholder="Ej: 1,2,3..." id="cantNinnos" name="cantidad">
-                        </label>
+                            <input type="number" placeholder="Ej: 1,2,3..." id="cantidadNinnos" name="cantidadNinnos">
                     </div>
 
                     <!-- complementos -->
@@ -92,13 +132,13 @@
                             <label>
                                 Seleccione los complementos que desea recibir en su estadía:</label>
                             <label for="radioDesayuno">
-                                <input type="checkbox" id="radioDesayuno" name=radioDesayuno> Desayuno incluído
+                                <input type="checkbox" id="radioDesayuno" name=desayuno> Desayuno incluído
                             </label>
                             <label for="radioParqueo">
-                                <input type="checkbox" id="radioParqueo" name=radioParqueo > Parqueo
+                                <input type="checkbox" id="radioParqueo" name=parqueo > Parqueo
                             </label>
                             <label for="radioWifi">
-                                <input type="checkbox" id="radioWifi" name=radioWifi > Wifi
+                                <input type="checkbox" id="radioWifi" name=wifi > Wifi
                             </label>
                         </div>
                     </fieldset>
